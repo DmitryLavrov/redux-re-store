@@ -1,6 +1,9 @@
-const ErrorIndicator = () => {
+const ErrorIndicator = ({error}) => {
   return (
-    <h3>Error!!!</h3>
+    <div>
+      <h3>Error!!!</h3>
+      <p>{error}</p>
+    </div>
   )
 }
 

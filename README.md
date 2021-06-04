@@ -1,5 +1,16 @@
 # redux-re-store
 
+### Install
+```shell
+Styles from www.bootstrapcdn.com
+<link rel="stylesheet" href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css/>
+
+Fonts from fontawesome.com/account/cdn
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"/>
+
+Fonts from https://fonts.google.com/specimen/Playfair+Display?query=playfair
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+```
 ### Questions
 
 `ErrorBoundary` render `return this.props.children`

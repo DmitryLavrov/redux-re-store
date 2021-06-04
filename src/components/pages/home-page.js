@@ -1,10 +1,11 @@
 import BookList from '../book-list'
+import ShoppingCartTable from '../shopping-cart-table'
 
 const HomePage = () => {
-  return(
+  return (
     <div>
-      HomePage
-    <BookList/>
+      <BookList/>
+      <ShoppingCartTable/>
     </div>
   )
 }
