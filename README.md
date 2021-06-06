@@ -2,14 +2,20 @@
 
 ### Install
 ```shell
+npx create-react-app redux-re-store
+cd redux-re-store
+npm i prop-types react-router-dom redux react-redux
+
 Styles from www.bootstrapcdn.com
-<link rel="stylesheet" href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 Fonts from fontawesome.com/account/cdn
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"/>
 
 Fonts from https://fonts.google.com/specimen/Playfair+Display?query=playfair
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+
+npm i redux-thunk
 ```
 ### Questions
 
@@ -120,4 +126,17 @@ const logMiddleware = (state) => (next) => (action) => {
   return next(action)
 }
 const store = createStore(reducer, applyMiddleware(logMiddleware))
+```
+Thunk middleware
+```javascript
+import thunkMiddleware from 'redux-thunk'
+
+const store = createStore(reducer, applyMiddleware(thunkMiddleware))
+const delayedActionCreator = (timeout) => (dispatch) => {
+   setTimeout(() => dispatch({
+      type: 'DELAYED_ACTION'
+   }), timeout)
+}
+
+store.dispatch(delayedActionCreator(3000))
 ```
