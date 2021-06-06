@@ -1,32 +1,22 @@
-import {compose, createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 
 import reducer from './reducers'
 
-const strStore = (createStore) => (...args) => {
-  const store = createStore(...args)
-  const {dispatch} = store
-  store.dispatch = (action) => {
+const logMiddleware = (state) => (next) => (action) => {
+  console.log(action.type, state.getState())
+  return next(action)
+}
+
+const strMiddleware = () => (next) => (action) => {
     if (typeof action === 'string') {
-      dispatch({type: action})
+      return next({type: action})
     } else {
-      dispatch(action)
+      return next(action)
     }
-  }
-  return store
 }
 
-const logStore = (createStore) => (...args) => {
-  const store = createStore(...args)
-  const {dispatch} = store
-  store.dispatch = (action) => {
-    console.log(action.type)
-    dispatch(action)
-  }
-  return store
-}
+const store = createStore(reducer, applyMiddleware(strMiddleware, logMiddleware))
 
-const store = createStore(reducer, compose(strStore, logStore))
-
-store.dispatch({type: 'HELLO'})
+store.dispatch('HELLO')
 
 export default store

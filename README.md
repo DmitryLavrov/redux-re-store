@@ -113,3 +113,11 @@ const logStore = (createStore) => (...args) => {
 }
 const store = createStore(reducer,logStore)
 ```
+Middleware
+```javascript
+const logMiddleware = (state) => (next) => (action) => {
+  console.log(action.type, state.getState())
+  return next(action)
+}
+const store = createStore(reducer, applyMiddleware(logMiddleware))
+```
