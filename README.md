@@ -45,7 +45,7 @@ Routing
 ```
 Reading data from Redux store
 ```javascript
-const BookList = ({books}) => {
+const BookListContainer = ({books}) => {
   return <p>{books}</p>
 }
 
@@ -53,7 +53,7 @@ const mapStateToProps = (store) => {
   return {books: store.books}
 }
 
-export default connect(mapStateToProps)(BookList)
+export default connect(mapStateToProps)(BookListContainer)
 ```
 Get values for `props` using HOC:
 1. Get access to service using `withBookstoreService` - _bookstoreService_
@@ -72,6 +72,31 @@ render() {
 export default pipe(
   connect(mapStateToProps, mapDispatchToProps),
   withBookstoreService()
-)(BookList)
+)(BookListContainer)
 ```
-
+Naming convention : [Request type]_[Object]_[Action]
+```javascript
+FETCH_BOOKS_REQUEST
+FETCH_BOOKS_SUCCESS
+FETCH_BOOKS_FAILURE
+```
+To add a new record to state Reducer must return a new state with a new record:
+```javascript
+    case 'BOOK_ADDED_TO_CART':
+      /* ... */
+      return {
+        ...store,
+        cartItems: [
+          ...store.cartItems,
+          newCartItem
+        ]
+      }
+```
+To insert updated record:
+```javascript
+    [
+      ...cartItems.slice(0, itemId),
+      newCartItem,
+      ...cartItems.slice(itemId + 1)
+    ]
+```

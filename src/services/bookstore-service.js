@@ -19,7 +19,9 @@ export default class BookstoreService {
   getBooks() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (Math.random() > 0.3) {
+        const rnd4 = Math.ceil(Math.random() * 4)
+        console.log('rnd4:', rnd4)
+        if (rnd4 > 1) {
           resolve(this.data)
         } else {
           reject('Something goes wrong...')
