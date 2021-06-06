@@ -100,3 +100,16 @@ To insert updated record:
       ...cartItems.slice(itemId + 1)
     ]
 ```
+Store Enhancer
+```javascript
+const logStore = (createStore) => (...args) => {
+  const store = createStore(...args)
+  const {dispatch} = store
+  store.dispatch = (action) => {
+    console.log(action.type)
+    dispatch(action)
+  }
+  return store
+}
+const store = createStore(reducer,logStore)
+```
